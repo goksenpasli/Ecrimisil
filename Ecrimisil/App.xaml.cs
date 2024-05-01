@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
+using System.Windows.Threading;
 
 namespace Ecrimisil
 {
@@ -13,5 +8,12 @@ namespace Ecrimisil
     /// </summary>
     public partial class App : Application
     {
+        private void Application_Startup(object sender, StartupEventArgs e) => Current.DispatcherUnhandledException += Current_DispatcherUnhandledException;
+
+        private void Current_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
+        {
+            _ = Current.Dispatcher.Invoke(() => MessageBox.Show(e.Exception?.Message, "ECRİMİSİL", MessageBoxButton.OK, MessageBoxImage.Warning));
+            e.Handled = true;
+        }
     }
 }
