@@ -1,6 +1,7 @@
 ﻿<Window x:Class="Ecrimisil.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Extensions="clr-namespace:Extensions;assembly=Extensions"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Ecrimisil"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -57,12 +58,18 @@
                         <DataGridTextColumn Binding="{Binding Gün}"
                             Header="GÜN"
                             IsReadOnly="True" />
-                        <DataGridTextColumn Binding="{Binding EcrimisilYüzölçümü, StringFormat=\{0:F\}}"
-                            Header="YÜZÖLÇÜM&#x0a;(m2)"
-                            IsReadOnly="True" />
-                        <DataGridTextColumn Binding="{Binding BirimFiyat, StringFormat=\{0:C6\}}"
-                            Header="BİRİM&#x0a;FİYAT"
-                            IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding EcrimisilYüzölçümü, StringFormat=\{0:F\}}" Header="YÜZÖLÇÜM&#x0a;(m2)" />
+                        <DataGridTemplateColumn Header="BİRİM&#x0a;FİYAT" IsReadOnly="True">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Extensions:ButtonedTextBox IsReadOnly="True"
+                                        OpenButtonVisibility="Collapsed"
+                                        PasteButtonVisibility="Collapsed"
+                                        ResetButtonVisibility="Collapsed"
+                                        Text="{Binding BirimFiyat, StringFormat=\{0:F6\}}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                         <DataGridTextColumn Binding="{Binding EcrimisilTutarı, StringFormat=\{0:C\}}"
                             Header="ECRİMİSİL&#x0a;TUTARI"
                             IsReadOnly="True" />
@@ -123,7 +130,7 @@
                     ItemsSource="{Binding YdoListe}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Yıl}"
-                            Header="YIL" 
+                            Header="YIL"
                             IsReadOnly="True" />
                         <DataGridTemplateColumn Header="ORAN">
                             <DataGridTemplateColumn.CellTemplate>

@@ -172,7 +172,7 @@ namespace Ecrimisil
         {
             if (endDate <= startDate)
             {
-                return 0;
+                return 1;
             }
             TimeSpan difference = endDate - startDate;
             if (difference.Days / 365d > 5)
