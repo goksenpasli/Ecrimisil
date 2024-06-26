@@ -94,8 +94,8 @@ namespace Ecrimisil
 
         private ObservableCollection<EcrimisilVeri> EcrimisilHesapla(DateTime başlangıç, DateTime bitiş, decimal bazfiyat, decimal yüzölçüm)
         {
-            int ilkyılgünfarkı = GünFarkı(başlangıç, new DateTime(başlangıç.Year, 12, 31));
-            int sonyılgünfarkı = GünFarkı(new DateTime(bitiş.Year, 1, 1), bitiş);
+            int ilkyılgünfarkı = GünFarkı(başlangıç, new DateTime(başlangıç.Year, 12, 31)) + 1;
+            int sonyılgünfarkı = GünFarkı(new DateTime(bitiş.Year, 1, 1), bitiş) + 1;
             ObservableCollection<EcrimisilVeri> liste = [];
             decimal tutar;
             for (int şuankiyıl = bitiş.Year; şuankiyıl >= başlangıç.Year; şuankiyıl--)
@@ -172,7 +172,7 @@ namespace Ecrimisil
         {
             if (endDate <= startDate)
             {
-                return 1;
+                return 0;
             }
             TimeSpan difference = endDate - startDate;
             if (difference.Days / 365d > 5)

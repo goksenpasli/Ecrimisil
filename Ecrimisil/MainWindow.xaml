@@ -38,7 +38,9 @@
                         </StackPanel>
                     </HeaderedContentControl>
                     <HeaderedContentControl Header="BAZ FİYAT">
-                        <TextBox Text="{Binding BazFiyat, UpdateSourceTrigger=PropertyChanged, StringFormat=\{0:C\}}" />
+                        <Extensions:ButtonedTextBox OpenButtonVisibility="Collapsed"
+                            ResetButtonVisibility="Collapsed"
+                            Text="{Binding BazFiyat, UpdateSourceTrigger=PropertyChanged, StringFormat=\{0:C\}}" />
                     </HeaderedContentControl>
                     <Button Command="{Binding Hesapla}" Content="HESAPLA" />
                 </StackPanel>
